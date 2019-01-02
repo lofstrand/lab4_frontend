@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+        <ui:define name="title">Löflunds : Messages</ui:define>
+        <ui:define name="content">
+
+        <h2 class="border-bottom mb-2 pb-2">Send message</h2>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+        <h:form>
+            <h:panelGroup id="inputGroup">
+                <div class="form-group">
+                    <label for="reciever">Reciever</label>
+                    <h:selectOneMenu id="reciever" value="#{messageBean.receiver}" class="form-control">
+                        <f:selectItems value="#{messageBean.receivers}" var="theReceiver" itemValue="#{theReceiver.id}" itemLabel="#{theReceiver.userName}" />
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <h:inputText id="subject" required="true" value="#{messageBean.subject}" class="form-control">
+                        <f:validateLength minimum="3" maximum="50"/>
+                    </h:inputText>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <h:inputTextarea id="message" rows="5" cols="50" autoResize="false" value="#{messageBean.content}" class="form-control">
+                        <f:validateLength minimum="5" maximum="255"/>
+                    </h:inputTextarea>
+                </div>
+                <!--
+                <h5>Reciever</h5>
+                <h:selectOneMenu id="reciever" value="#{messageBean.receiver}">
+                    <f:selectItem itemLabel="- Select -" itemValue="" />
+                    <f:selectItems value="#{messageBean.receivers}" var="theReceiver" itemValue="#{theReceiver.id}" itemLabel="#{theReceiver.userName}" />
+                </h:selectOneMenu>
+                <h5>Subject</h5>
+                <p:inputText required="true" value="#{messageBean.subject}"/>
+                <h5>Message</h5>
+                <p:inputTextarea rows="5" cols="50" autoResize="false" value="#{messageBean.content}"/>
+                <br />
+                -->
+                <div class="form-group">
+                    <h:commandButton value="Submit" update="inputGroup" process="@all" action="#{messageBean.send}" class="btn btn-primary" />
+                </div>
+            </h:panelGroup>
+        </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

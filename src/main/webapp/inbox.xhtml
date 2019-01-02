@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+        <ui:define name="title">Löflunds : Inbox</ui:define>
+        <ui:define name="content">
+
+        <h2 class="mb-2 pb-2">Inbox</h2>
+        <h:form>
+
+        <h:dataTable value = "#{user.inbox}" var = "message" id="inbox_table" class="table table-striped table-sm table-hover">
+            <h:column>
+                <f:facet name="header">Sender</f:facet>
+                #{message.sender.username}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Subject</f:facet>
+                #{message.subject}
+            </h:column>
+
+            <h:column>
+                <h:button class="btn btn-sm btn-primary" outcome="viewmessage" value="View">
+                    <f:param name="id" value="#{message.id}" />
+                </h:button>
+            </h:column>
+
+        </h:dataTable>
+            <p:poll interval="5" update="inbox_table" />
+        </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+        <ui:define name="title">Löflunds : Canvas</ui:define>
+        <ui:define name="content">
+
+            <h2 class="border-bottom mb-2 pb-2">Canvas</h2>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+
+            <iframe height="550" width="750" frameborder="0" scrolling="no" src="http://192.168.99.100:4000/"> </iframe>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

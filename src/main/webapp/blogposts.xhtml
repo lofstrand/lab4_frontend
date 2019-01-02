@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+        <ui:define name="title">Löflunds : Blog</ui:define>
+        <ui:define name="content">
+
+            <h2 class="border-bottom mb-2 pb-2">Blog</h2>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:form>
+                <h:panelGroup id="inputGroup">
+                    <div class="form-group">
+                        <h:inputTextarea rows="3" cols="50" autoResize="false" value="#{blogpost.content}" required="true" class="form-control">
+                            <f:validateLength minimum="5" maximum="255"/>
+                        </h:inputTextarea>
+                    </div>
+                    <div class="form-group">
+                        <h:commandButton class="btn btn-primary" value="Submit" id="btnAll" process="@all" update="inputGroup bps" action="#{blogpost.save}" />
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup id="bps">
+                    <p:repeat value="#{user.blogPosts}" var="bp">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <p:outputPanel>
+                                    <p class="card-title font-weight-bold">
+                                        <img src="images/noperson.png" height="20px" alt="" class="rounded-circle left" /> #{bp.owner.username} | Posted on #{bp.creationDate}
+                                    </p>
+                                    <p class="card-text">
+                                        <h:panelGroup rendered="#{bp.graph_url == null}">
+                                            #{bp.content}
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{bp.graph_url != null}">
+                                            <iframe style="width:100%; height:400px;" height="400" src="#{bp.graph_url}" frameborder="0"> </iframe>
+                                        </h:panelGroup>
+                                    </p>
+                                </p:outputPanel>
+                            </div>
+                        </div>
+                    </p:repeat>
+                </h:panelGroup>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

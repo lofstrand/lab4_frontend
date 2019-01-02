@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+   <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+      <ui:define name="title">Löflunds : Home</ui:define>
+      <ui:define name="content">
+
+         <h2 class="border-bottom mb-2 pb-2">Search</h2>
+
+         <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+         </p:messages>
+
+         <h:form>
+            <div class="form-group">
+               <h:inputText id="search" class="form-control" value="#{search.input}" required="true" minlength="2">
+                  <f:validateLength minimum="2" maximum="20"/>
+               </h:inputText>
+            </div>
+            <div class="form-group">
+               <h:commandButton value="Submit" update=":searchTable" process="@all" action="#{search.search}" class="btn btn-primary" />
+            </div>
+
+            <h:outputText rendered="#{not empty search.input and empty search.users}" value="No users found." />
+            <h:panelGroup  rendered="#{not empty search.users}">
+               <h:dataTable value = "#{search.users}" var="u" id="searchTable" class="table table-striped table-hover">
+                  <h:column>
+                     <f:facet name="header">Username</f:facet>
+                     #{u.username}
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header"> </f:facet>
+                     <h:button outcome="member" value="Show" class="btn btn-primary btn-sm">
+                        <f:param name="id" value="#{u.id}" />
+                     </h:button>
+                  </h:column>
+               </h:dataTable>
+            </h:panelGroup>
+         </h:form>
+      </ui:define>
+   </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+<body>
+<ui:composition>
+    <h:form>
+        <nav class="navbar navbar-expand-lg navbar-light p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+            <h:link class="navbar-brand" outcome="index" value="Löflunds" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="Blog" outcome="blogposts" />
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="Canvas" outcome="canvas" />
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="Graphs" outcome="graphs" />
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Messages
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <h:link class="dropdown-item" value="Send message" outcome="sendmessage" />
+                            <div class="dropdown-divider"> </div>
+                            <h:link class="dropdown-item" value="Inbox" outcome="inbox" />
+                            <h:link class="dropdown-item" value="Outbox" outcome="outbox" />
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="Search" outcome="search" />
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        #{user.username}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <h:link class="dropdown-item" value="Profile" outcome="profile" />
+                        <div class="dropdown-divider"> </div>
+                        <h:commandLink class="dropdown-item" action="#{auth.logout}" value="Logout" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>

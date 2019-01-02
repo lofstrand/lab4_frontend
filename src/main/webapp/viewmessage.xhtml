@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:body>
+    <ui:composition template="WEB-INF/template/common/commonLayout.xhtml">
+    <ui:define name="title">Löflunds : Read</ui:define>
+        <ui:define name="content">
+            <h2 class="border-bottom mb-2 pb-2">Message</h2>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h:panelGrid columns="2">
+                        <h:outputText class="font-weight-bold col-sm-2" value="From" />
+                        <h:link value="#{user.getViewMessage(param['id']).sender.username}" outcome="member" >
+                            <f:param name="id" value="#{user.getViewMessage(param['id']).sender.id}" />
+                        </h:link>
+
+                        <h:outputText class="font-weight-bold col-sm-2" value="To" />
+                        <h:link value="#{user.getViewMessage(param['id']).receiver.username}" outcome="member">
+                            <f:param name="id" value="#{user.getViewMessage(param['id']).receiver.id}" />
+                        </h:link>
+
+                        <h:outputText class="font-weight-bold col-sm-2" value="Subject" />
+                        <h:outputText value="#{user.getViewMessage(param['id']).subject}" />
+                    </h:panelGrid>
+                </div>
+                <div class="card-body">
+                    <p>#{user.getViewMessage(param['id']).content}</p>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

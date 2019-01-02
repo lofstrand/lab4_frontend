@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <title>
+        <ui:insert name="title">Löflunds</ui:insert>
+    </title>
+    <h:outputStylesheet library="webjars" name="bootstrap/4.1.3/css/bootstrap.min-jsf.css" />
+</h:head>
+
+<h:body>
+        <div id="header">
+            <ui:insert name="header" >
+                <ui:include src="unauthNavbar.xhtml" />
+            </ui:insert>
+        </div>
+
+        <div class="container">
+            <ui:insert name="content" >
+                <ui:include src="../common/commonContent.xhtml" />
+            </ui:insert>
+        </div>
+
+        <ui:insert name="footer" >
+            <ui:include src="../common/commonFooter.xhtml" />
+        </ui:insert>
+
+</h:body>
+</html>

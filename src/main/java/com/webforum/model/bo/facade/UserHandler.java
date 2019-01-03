@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UserHandler {
     // Constants ----------------------------------------------------------------------------------
-    public static final String REST_USERS_URI       = "http://192.168.99.100:8082/rest/api/users";
+    public static final String REST_USERS_URI       = "http://192.168.99.100:8082/api/users";
 
     // Actions ------------------------------------------------------------------------------------
 

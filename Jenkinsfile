@@ -5,16 +5,6 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
-        stage ('Initialize') {
-            steps {
-                git 'https://github.com/lofstrand/lab4_frontend.git'
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
-
         stage ('Build') {
             steps {
                 echo 'build'
@@ -24,22 +14,17 @@ pipeline {
             post {
                 success {
                 echo 'success'
-                    //junit 'target/surefire-reports/**/*.xml'
                     archiveArtifacts 'target/*.war'
                 }
             }
         }
-
-        stage('Docker build') {
-            //agent { dockerfile true }
+        stage ('Docker') {
             steps {
-                sh '''
-                    rm -fr /usr/local/tomee/webapps/community
-                    docker cp target/community.war frontend://usr/local/tomee/webapps/community.war
-                '''
-                //echo 'Hello jdk'
-                //sh 'java -version'
+                echo 'Building docker container'
+                sh 'docker-compose down'
+                sh 'docker-compose up --no-deps --build -d'
             }
+
         }
     }
 }

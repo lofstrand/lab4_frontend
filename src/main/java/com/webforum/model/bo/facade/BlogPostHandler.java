@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class BlogPostHandler {
     // Constants ----------------------------------------------------------------------------------
-    public static final String REST_BLOGPOSTS_URI   = "http://192.168.99.100:8081/rest/api/blogposts";
+    public static final String REST_BLOGPOSTS_URI   = "http://192.168.99.100:8081/api/blogposts";
 
     // Actions ------------------------------------------------------------------------------------
     /**

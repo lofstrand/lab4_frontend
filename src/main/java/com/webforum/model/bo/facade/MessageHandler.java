@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class MessageHandler {
     // Constants ----------------------------------------------------------------------------------
-    public static final String REST_MESSAGES_URI    = "http://192.168.99.100:8083/rest/api/messages";
+    public static final String REST_MESSAGES_URI    = "http://192.168.99.100:8083/api/messages";
 
     // Actions ------------------------------------------------------------------------------------
     /**

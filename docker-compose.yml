@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: frontend
+    build: .
+    environment:
+      - DB_HOST = mysql
+      - DB_USER = root
+      - DB_PASSWORD = password
+    ports:
+      - "8080:8080"
+    network_mode: bridge
